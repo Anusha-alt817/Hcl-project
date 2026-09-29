@@ -10,6 +10,25 @@ pipeline {
             }
         }
 
+        stage('Check Java and Maven') {
+            steps {
+                sh '''
+                    echo "===== JAVA ====="
+                    echo $JAVA_HOME
+                    which java
+                    java -version
+
+                    echo "===== JAVAC ====="
+                    which javac
+                    javac -version
+
+                    echo "===== MAVEN ====="
+                    which mvn
+                    mvn -version
+                '''
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Building application with Maven...'
